@@ -1,0 +1,24 @@
+program Projeto_investimentos;
+
+uses
+  Vcl.Forms,
+  uTelaPrincial in 'uTelaPrincial.pas' {fmlTelaPrincial},
+  DadosGlobais in '..\..\..\..\..\Documents\Embarcadero\Studio\Projects\DadosGlobais.pas',
+  uCadastrosJogos in 'uCadastrosJogos.pas' {fmlCadastrosJogos},
+  uRelatorioJogos in 'uRelatorioJogos.pas' {Form1},
+  uJogosAbertoFechados in 'uJogosAbertoFechados.pas' {Form2},
+  uDataModule in 'uDataModule.pas' {DataModule1: TDataModule},
+  uDadosGlobais in 'uDadosGlobais.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfmlTelaPrincial, fmlTelaPrincial);
+  Application.CreateForm(TfmlCadastrosJogos, fmlCadastrosJogos);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.

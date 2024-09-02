@@ -1,0 +1,15 @@
+inherited fmlTelaPadrao1: TfmlTelaPadrao1
+  Caption = 'fmlTelaPadrao1'
+  TextHeight = 15
+  inherited pCentral: TPanel
+    ExplicitLeft = 104
+    ExplicitTop = 8
+    ExplicitWidth = 440
+    ExplicitHeight = 406
+    inherited pNomeTela: TPanel
+      Height = 64
+      Caption = 'DEPOSITO'
+      ExplicitHeight = 64
+    end
+  end
+end

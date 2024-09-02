@@ -1,0 +1,10 @@
+unit uDadosGlobais;
+
+interface
+
+var
+  meses : array [1..12] of string = ('janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro');
+
+implementation
+
+end.

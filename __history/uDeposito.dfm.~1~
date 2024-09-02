@@ -1,0 +1,4 @@
+inherited fmlTelaPadrao1: TfmlTelaPadrao1
+  Caption = 'fmlTelaPadrao1'
+  TextHeight = 15
+end

@@ -1,0 +1,34 @@
+unit uDeposito;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaPadrao, Vcl.ExtCtrls,
+  Vcl.WinXPickers, Vcl.StdCtrls, uDataModule, uDadosGlobais;
+
+type
+  TfmlTelaPadrao1 = class(TfmlTelaPadrao)
+    procedure edtValorChange(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmlTelaPadrao1: TfmlTelaPadrao1;
+
+  query : TDataModule1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfmlTelaPadrao1.edtValorChange(Sender: TObject);
+begin
+  inherited;
+  tratarEdit(edtValor);
+end;
+
+end.

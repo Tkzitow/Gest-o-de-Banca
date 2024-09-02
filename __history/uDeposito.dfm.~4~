@@ -1,0 +1,44 @@
+inherited fmlTelaPadrao1: TfmlTelaPadrao1
+  Caption = 'fmlTelaPadrao1'
+  TextHeight = 15
+  inherited pCentral: TPanel
+    ExplicitLeft = 104
+    ExplicitTop = 8
+    ExplicitWidth = 440
+    ExplicitHeight = 406
+    inherited pNomeTela: TPanel
+      Height = 64
+      Caption = 'DEPOSITO'
+      ExplicitHeight = 64
+    end
+    object Edit1: TEdit
+      Left = 88
+      Top = 136
+      Width = 121
+      Height = 23
+      TabOrder = 2
+      Text = 'Edit1'
+    end
+    object Edit2: TEdit
+      Left = 88
+      Top = 248
+      Width = 121
+      Height = 23
+      TabOrder = 3
+      Text = 'Edit2'
+    end
+    object DatePicker1: TDatePicker
+      Left = 264
+      Top = 127
+      Width = 145
+      Date = 45537.000000000000000000
+      DateFormat = 'dd/mm/yyyy'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      TabOrder = 4
+    end
+  end
+end
