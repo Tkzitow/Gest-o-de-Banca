@@ -21,10 +21,8 @@ object fmlTelaPadrao: TfmlTelaPadrao
     Height = 406
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 136
-    ExplicitTop = 200
-    ExplicitWidth = 185
-    ExplicitHeight = 41
+    ExplicitWidth = 436
+    ExplicitHeight = 405
     object Label1: TLabel
       Left = 40
       Top = 235
@@ -46,6 +44,8 @@ object fmlTelaPadrao: TfmlTelaPadrao
       Height = 69
       Align = alBottom
       TabOrder = 0
+      ExplicitTop = 335
+      ExplicitWidth = 434
       object pBtnOk: TPanel
         Left = 1
         Top = 1
@@ -54,7 +54,6 @@ object fmlTelaPadrao: TfmlTelaPadrao
         Align = alLeft
         Caption = 'OK'
         TabOrder = 0
-        ExplicitLeft = 0
       end
       object pBtnLimpar: TPanel
         Left = 161
@@ -65,7 +64,6 @@ object fmlTelaPadrao: TfmlTelaPadrao
         Caption = 'Limpar'
         TabOrder = 1
         OnClick = pBtnLimparClick
-        ExplicitLeft = 144
       end
       object pBtnCancelar: TPanel
         Left = 304
@@ -76,6 +74,7 @@ object fmlTelaPadrao: TfmlTelaPadrao
         Caption = 'Cancelar'
         TabOrder = 2
         OnClick = pBtnCancelarClick
+        ExplicitLeft = 300
       end
     end
     object pNomeTela: TPanel
@@ -86,14 +85,13 @@ object fmlTelaPadrao: TfmlTelaPadrao
       Align = alTop
       Caption = 'NOME_TELA'
       TabOrder = 1
-      ExplicitLeft = 2
-      ExplicitTop = 0
+      ExplicitWidth = 434
     end
     object edtValor: TEdit
       Left = 40
       Top = 144
       Width = 203
-      Height = 49
+      Height = 45
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -27
@@ -104,7 +102,8 @@ object fmlTelaPadrao: TfmlTelaPadrao
     end
     object dataTelaPadrao: TDatePicker
       Left = 273
-      Top = 161
+      Top = 144
+      Height = 49
       Date = 45537.000000000000000000
       DateFormat = 'dd/mm/yyyy'
       Font.Charset = DEFAULT_CHARSET

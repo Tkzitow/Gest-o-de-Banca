@@ -26,5 +26,6 @@ begin
   Application.CreateForm(TfmlTelaPadrao, fmlTelaPadrao);
   Application.CreateForm(TfmlTelaPadrao1, fmlTelaPadrao1);
   Application.CreateForm(TfmlTelaPadrao2, fmlTelaPadrao2);
+  ReportMemoryLeaksOnShutdown := DebugHook <> 0;
   Application.Run;
 end.

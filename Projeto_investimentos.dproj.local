@@ -30,14 +30,14 @@
     <Transaction>2024/08/21 12:34:42.000.448,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uDataModule.dfm=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit1.dfm</Transaction>
     <Transaction>2024/08/21 12:39:17.000.161,=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit1.pas</Transaction>
     <Transaction>2024/08/21 12:39:28.000.547,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uDadosGlobais.pas=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit1.pas</Transaction>
-    <Transaction>2024/09/02 10:19:20.724,=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit3.pas</Transaction>
-    <Transaction>2024/09/02 11:04:08.834,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uTelaPadrao.dfm=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit3.dfm</Transaction>
-    <Transaction>2024/09/02 11:04:08.834,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uTelaPadrao.pas=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit3.pas</Transaction>
-    <Transaction>2024/09/02 11:07:28.303,=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit1.pas</Transaction>
-    <Transaction>2024/09/02 11:07:36.244,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uDeposito.pas=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit1.pas</Transaction>
-    <Transaction>2024/09/02 11:07:36.244,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uDeposito.dfm=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit1.dfm</Transaction>
-    <Transaction>2024/09/02 11:07:44.696,=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit2.pas</Transaction>
-    <Transaction>2024/09/02 11:07:55.228,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uSaque.dfm=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit2.dfm</Transaction>
-    <Transaction>2024/09/02 11:07:55.228,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uSaque.pas=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit2.pas</Transaction>
+    <Transaction>2024/09/02 10:19:20.000.724,=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit3.pas</Transaction>
+    <Transaction>2024/09/02 11:04:08.000.834,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uTelaPadrao.dfm=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit3.dfm</Transaction>
+    <Transaction>2024/09/02 11:04:08.000.834,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uTelaPadrao.pas=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit3.pas</Transaction>
+    <Transaction>2024/09/02 11:07:28.000.303,=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit1.pas</Transaction>
+    <Transaction>2024/09/02 11:07:36.000.244,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uDeposito.pas=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit1.pas</Transaction>
+    <Transaction>2024/09/02 11:07:36.000.244,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uDeposito.dfm=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit1.dfm</Transaction>
+    <Transaction>2024/09/02 11:07:44.000.696,=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit2.pas</Transaction>
+    <Transaction>2024/09/02 11:07:55.000.228,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uSaque.dfm=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit2.dfm</Transaction>
+    <Transaction>2024/09/02 11:07:55.000.228,C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\uSaque.pas=C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Software\Unit2.pas</Transaction>
   </Transactions>
 </BorlandProject>

@@ -1,6 +1,6 @@
 ﻿object fmlTelaPrincial: TfmlTelaPrincial
-  Left = 0
-  Top = 0
+  Left = 368
+  Top = 83
   Caption = 'Tela Principal'
   ClientHeight = 811
   ClientWidth = 1225
@@ -10,6 +10,8 @@
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
+  OnClose = FormClose
   OnCreate = FormCreate
   TextHeight = 15
   object Panel1: TPanel
@@ -59,7 +61,7 @@
         Top = 14
         Width = 129
         Height = 41
-        Caption = 'Banca Inicial'
+        Caption = 'Banca '
         TabOrder = 2
       end
       object pBancaInicial: TPanel
@@ -67,7 +69,7 @@
         Top = 14
         Width = 185
         Height = 41
-        Caption = 'pBancaInicial'
+        Caption = 'pBanca'
         TabOrder = 3
       end
       object Panel11: TPanel

@@ -16,7 +16,7 @@ type
   public
     { Public declarations }
   end;
-    function deposito(edtValor :TEdit; dt : TDatePicker; edtObs : Tedit): double;
+    function deposito(edtValor :TEdit; dt : TDatePicker; edtObs : Tedit): boolean;
 var
   fmlTelaPadrao1: TfmlTelaPadrao1;
 
@@ -32,34 +32,35 @@ begin
   tratarEdit(edtValor);
 end;
 
-function deposito(edtValor :TEdit; dt : TDatePicker; edtObs : Tedit): double;
+function deposito(edtValor :TEdit; dt : TDatePicker; edtObs : Tedit): boolean;
 var
-  valor : double;
-  data : TDateTime;
-  observacao : string;
+  valor_deposito : double;
+  data_deposito : TDateTime;
+  observacao_deposito : string;
 begin
-  valor := strtofloat(edtValor.Text);
-  data := dt.Date;
-  observacao := edtObs.Text;
+  valor_deposito := strtofloat(edtValor.Text);
+  data_deposito := dt.Date;
+  observacao_deposito := edtObs.Text;
 
 
   try
     query := TDataModule1.Create(nil);
 
-    if valor > 0 then
+    if valor_deposito > 0 then
       begin
 
         with query.Query1 do
           begin
             sql.Clear;
-            sql.Add('insert into DEPOSITO (VALOR_DEPOSITO, DATA_DEPOSITO, OBSERVACAO_DEPOSITO) value (:pValor, :p)
+            sql.Add('insert into DEPOSITO (VALOR_DEPOSITO, DATA_DEPOSITO, OBSERVACAO_DEPOSITO) value (:pValor, :pData, :pObservacao)');
+            ParamByName('pValor').AsFloat := valor_deposito;
+            ParamByName('pData').AsDate := data_deposito;
+            ParamByName('pObservacao').AsString := observacao_deposito;
+            ExecSQL;
+
+            result := true;
 
           end;
-
-
-
-
-
       end;
 
   finally
@@ -69,9 +70,36 @@ begin
 end;
 
 procedure TfmlTelaPadrao1.pBtnOkClick(Sender: TObject);
+var
+  valor_deposito : double;
+  data_deposito : TDateTime;
+  observacao_deposito : string;
+  descricao_deposito : string;
 begin
   inherited;
-  deposito(edtValor);
+  valor_deposito := strtofloat(edtValor.Text);
+  data_deposito := dataTelaPadrao.Date;
+  observacao_deposito := edtObservacao.Text;
+
+
+  descricao_deposito := 'Confirmar Depósito' + #13 + #13
+                         + 'Valor:      ' + formatfloat('#,##0.00', valor_deposito) + #13
+                         + 'Data:       ' + formatdatetime('dd/mm/yyyy', data_deposito) + #13
+                         + 'Obs:        ' + observacao_deposito;
+
+
+  if Application.MessageBox(PChar(descricao_deposito), 'Depósito', MB_YESNO) = mrYes then
+    begin
+      deposito(edtValor, dataTelaPadrao, edtObservacao);
+
+      pBtnLimparClick(pBtnLimpar);
+
+    end
+    else
+    begin
+
+    end;
+
 end;
 
 end.

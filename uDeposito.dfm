@@ -2,10 +2,6 @@ inherited fmlTelaPadrao1: TfmlTelaPadrao1
   Caption = ''
   TextHeight = 15
   inherited pCentral: TPanel
-    ExplicitLeft = 104
-    ExplicitTop = 8
-    ExplicitWidth = 440
-    ExplicitHeight = 406
     inherited pbarraButton: TPanel
       inherited pBtnOk: TPanel
         OnClick = pBtnOkClick

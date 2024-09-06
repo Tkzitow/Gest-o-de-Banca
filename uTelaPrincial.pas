@@ -77,14 +77,14 @@ type
     procedure FormCreate(Sender: TObject);
     procedure pDepositoClick(Sender: TObject);
     procedure pSaqueClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
     { Public declarations }
 
   procedure layoutANDcomponentes;
-  procedure deposito;
-  procedure saque;
+  procedure atualizarInfFinanceiras;
   end;
 
 var
@@ -99,17 +99,22 @@ implementation
 
 { TfmlTelaPrincial }
 
-procedure TfmlTelaPrincial.deposito;
-var
-  open_tela : TfmlTelaPadrao1;
+
+
+procedure TfmlTelaPrincial.atualizarInfFinanceiras;
 begin
   try
-    open_tela := TfmlTelaPadrao1.Create(nil);
-    open_tela.ShowModal;
-  finally
-    open_tela.Free;
-  end;
 
+
+
+  except
+    ShowMessage('Erro na atualização de dados financeiros!');
+  end;
+end;
+
+procedure TfmlTelaPrincial.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  query.Destroy;
 end;
 
 procedure TfmlTelaPrincial.FormCreate(Sender: TObject);
@@ -133,16 +138,18 @@ begin
 end;
 
 procedure TfmlTelaPrincial.pDepositoClick(Sender: TObject);
+var
+  open_tela : TfmlTelaPadrao1;
 begin
-  deposito;
+  try
+    open_tela := TfmlTelaPadrao1.Create(nil);
+    open_tela.ShowModal;
+  finally
+    open_tela.Free;
+  end;
 end;
 
 procedure TfmlTelaPrincial.pSaqueClick(Sender: TObject);
-begin
-  saque;
-end;
-
-procedure TfmlTelaPrincial.saque;
 var
   open_tela : TfmlTelaPadrao2;
 begin
@@ -154,5 +161,6 @@ begin
   end;
 
 end;
+
 
 end.
