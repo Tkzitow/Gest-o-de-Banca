@@ -1,0 +1,41 @@
+DELIMITER //
+
+create trigger TGR_SOMAR_BANCA_INSERT
+after insert
+on DEPOSITO
+for each row
+begin
+  declare VALOR_TOTAL float;
+
+  select sum(VALOR_DEPOSITO) into VALOR_TOTAL from DEPOSITO;
+
+  update FINANCEIRO
+  set BANCA = VALOR_TOTAL,
+      BANCA_ATUAL = BANCA_ATUAL + new.VALOR_DEPOSITO,
+      VALOR_ULTIMO_DEPOSITO_2 = VALOR_ULTIMO_DEPOSITO_1,
+      VALOR_ULTIMO_DEPOSITO_1 = new.VALOR_DEPOSITO;
+
+end //
+
+DELIMITER ;
+
+DELIMITER //
+
+create trigger TGR_SOMAR_BANCA_UPDATE
+after update
+on DEPOSITO
+for each row
+begin
+  declare VALOR_TOTAL float;
+
+  select sum(VALOR_DEPOSITO) into VALOR_TOTAL from DEPOSITO;
+
+  update FINANCEIRO
+  set BANCA = VALOR_TOTAL,
+      BANCA_ATUAL = BANCA_ATUAL + new.VALOR_DEPOSITO,
+      VALOR_ULTIMO_DEPOSITO_2 = VALOR_ULTIMO_DEPOSITO_1,
+      VALOR_ULTIMO_DEPOSITO_1 = new.VALOR_DEPOSITO;
+
+end //
+
+DELIMITER ;

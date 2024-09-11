@@ -1,0 +1,26 @@
+inherited fmlTelaPadrao1: TfmlTelaPadrao1
+  Caption = ''
+  ExplicitWidth = 448
+  ExplicitHeight = 443
+  TextHeight = 15
+  inherited pCentral: TPanel
+    inherited pbarraButton: TPanel
+      Top = 335
+      Width = 434
+      inherited pBtnOk: TPanel
+        OnClick = pBtnOkClick
+      end
+    end
+    inherited pNomeTela: TPanel
+      Width = 434
+      Height = 64
+      Caption = 'DEPOSITO'
+      Color = 8644733
+      ParentBackground = False
+      ExplicitHeight = 64
+    end
+    inherited edtValor: TEdit
+      OnChange = edtValorChange
+    end
+  end
+end

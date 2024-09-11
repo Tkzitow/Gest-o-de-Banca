@@ -1,0 +1,12 @@
+create table JOGOS (
+  ID_JOGO                 INT NOT NULL,
+  DESCRICAO               VARCHAR(50) NOT NULL,
+  ODD                     FLOAT NOT NULL,
+  TIPO_APOSTA             VARCHAR(20) NOT NULL,
+  METODO                  VARCHAR(50) NOT NULL,
+  DATA_JOGO               DATE NOT NULL,
+  VALOR_ENTRADA           FLOAT NOT NULL,
+  VALOR_LUCRO             FLOAT NULL,
+  RISCO                   FLOAT NOT NULL,
+  RESULTADO               CHAR(1) NULL,
+);
