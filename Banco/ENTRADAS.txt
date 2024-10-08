@@ -1,0 +1,38 @@
+create table ENTRADAS (
+  ENTRADA_ID         INT AUTO_INCREMENT PRIMARY KEY,
+  ID_JOGO_1          INT NOT NULL,
+  ID_JOGO_2          INT NULL,
+  ID_JOGO_3          INT NULL,
+  ID_JOGO_4          INT NULL,
+  ID_JOGO_5          INT NULL,
+  ODD_ENTRADA        FLOAT NOT NULL,
+  DESCRICAO_ENTRADA  VARCHAR(100) NOT NULL,
+  UNIDADE            FLOAT NOT NULL,
+  VALOR_ENTRADA      FLOAT NOT NULL,
+  RISCO              FLOAT NOT NULL,
+  RETORNO            FLOAT NULL,
+  RESULTADO_ENTRADA  CHAR(1) NULL,
+  DATA_ENTRADA       DATE NOT NULL
+);
+
+
+
+/*Checagem ODD maior que 0..*/
+alter table ENTRADAS
+add constraint CK_ODD
+check (ODD > 0);
+
+/*Checagem Valor entrada maior que 0 ..*/
+alter table ENTRADAS
+add constraint CK_VALOR
+check (VALOR_ENTRADA > 0);
+
+/*Checagem Resultado..*/
+/* G - Green..........*/
+/* R - Red............*/
+/* C - Cach out.......*/
+alter table ENTRADAS
+add constraint CK_RESULTADO
+check (RESULTADO_ENTRADA IN('G', 'R', 'C'));
+
+

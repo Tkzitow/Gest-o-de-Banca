@@ -18,7 +18,7 @@ object DataModule1: TDataModule1
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     VendorLib = 
       'C:\Users\TK\Desktop\backupFormatacao\Projetos\Projeto_Banca\Soft' +
-      'ware\DLL\libmysql.dll'
+      'ware\Software\DLL\libmysql.dll'
     Left = 80
     Top = 200
   end

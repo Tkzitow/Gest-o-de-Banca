@@ -45,9 +45,10 @@ begin
         with query.Query1 do
           begin
             sql.Clear;
-            sql.Add('insert into DEPOSITO (VALOR_DEPOSITO, DATA_DEPOSITO, OBSERVACAO_DEPOSITO) value (:pValor, :pData, :pObservacao)');
+            sql.Add('insert into FINANCEIRO (VALOR, DATA_FINANCEIRO, TIPO_MOVIMENTO, OBSERVACAO_FINANCEIRO) value (:pValor, :pData, :pTipo_movimento, :pObservacao)');
             ParamByName('pValor').AsFloat := valor_deposito;
             ParamByName('pData').AsDate := data_deposito;
+            ParamByName('pTipo_movimento').AsString := 'DP';
             ParamByName('pObservacao').AsString := observacao_deposito;
             ExecSQL;
 

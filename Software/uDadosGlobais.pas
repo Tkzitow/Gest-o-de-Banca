@@ -8,10 +8,13 @@ var
   mesesStr : array [1..12] of string = ('janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro');
   teste : string;
 
+  array_id_preJogo : array [1..5] of integer = (0, 0, 0, 0, 0);
   banca : double;
   banca_atual : double;
   roi : double;
   percentual_unidade : double;
+  valor_unidade : double;
+  qtd_unidade : double;
 
   procedure tratarEdit(sender : TObject);
 implementation
@@ -45,5 +48,9 @@ begin
      TEdit(Sender).SelStart := length(v);
     end;
 end;
+
+{ TpreJogo }
+
+
 
 end.

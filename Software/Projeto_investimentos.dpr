@@ -3,7 +3,6 @@ program Projeto_investimentos;
 uses
   Vcl.Forms,
   uTelaPrincial in 'uTelaPrincial.pas' {fmlTelaPrincial},
-  DadosGlobais in '..\..\..\..\..\Documents\Embarcadero\Studio\Projects\DadosGlobais.pas',
   uCadastrosJogos in 'uCadastrosJogos.pas' {fmlCadastrosJogos},
   uRelatorioJogos in 'uRelatorioJogos.pas' {Form1},
   uJogosAbertoFechados in 'uJogosAbertoFechados.pas' {Form2},

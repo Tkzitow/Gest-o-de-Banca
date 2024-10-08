@@ -1,12 +1,48 @@
 create table JOGOS (
-  ID_JOGO                 INT NOT NULL,
-  DESCRICAO               VARCHAR(50) NOT NULL,
-  ODD                     FLOAT NOT NULL,
-  TIPO_APOSTA             VARCHAR(20) NOT NULL,
+  ID_JOGO                 INT AUTO_INCREMENT PRIMARY KEY,
+  TIPO_JOGO               CHAR(3) NOT NULL DEFAULT 'P',
+  DESCRICAO               VARCHAR(100) NOT NULL,
+  ODD_JOGO                FLOAT NULL,
+  ODD_PRE_JOGO            FLOAT NOT NULL, 
+  TIPO_APOSTA             VARCHAR(20) NULL,
   METODO                  VARCHAR(50) NOT NULL,
-  DATA_JOGO               DATE NOT NULL,
-  VALOR_ENTRADA           FLOAT NOT NULL,
+  DATA_JOGO               DATE NULL,
+  DATA_PRE_JOGO           DATE NOT NULL, 
+  VALOR_ENTRADA           FLOAT NULL,
   VALOR_LUCRO             FLOAT NULL,
-  RISCO                   FLOAT NOT NULL,
+  RISCO_PRE_JOGO          FLOAT NOT NULL,
+  RISCO_JOGO              FLOAT NULL,
+  ENTRADAS                INT NULL,
   RESULTADO               CHAR(1) NULL,
+  JOGO_ATIVO              CHAR(1) NULL DEFAULT 'S'
 );
+
+
+/*Chave estrangeira.....*/
+alter table JOGOS
+add constraint FK_JOGOS_ENTRADAS
+foreign key(ENTRADAS)
+references ENTRADAS(ENTRADA_ID);
+
+
+/* Checagem  TIPO_JOGO...*/
+/* Pre - Pré-Jogo..........*/
+/* Jog - Jogo..............*/
+alter table JOGOS
+add constraint CK_JOGOS_OR_PREJOGO
+check (TIPO_JOGO in ('PRE', 'JOG'));
+
+/*Checagem  JOGO_ATIVO..*/
+/* S - sim..............*/
+/* N - Não..............*/
+alter table JOGOS
+add constraint CK_JOGOS_ATIVO
+check (JOGO_ATIVO in ('S', 'N'));
+
+/*Checagem RESULTADO..*/
+/* G - Green..........*/
+/* R - Red............*/
+/* C - Cash Out.......*/
+alter table JOGOS
+add constraint CK_RESULTADO
+check (RESULTADO in ('G', 'R', 'C'));

@@ -1,0 +1,493 @@
+unit uCadastrosJogos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls,
+  uDataModule, uDadosGlobais;
+
+type
+  TfmlCadastrosJogos = class(TForm)
+    pCadastroPreJogo: TPanel;
+    rgTipoAposta: TRadioGroup;
+    pBtnCadastrar: TPanel;
+    pBtnLimpar: TPanel;
+    pBtnCancelar: TPanel;
+    rgMetodosEstrategias: TRadioGroup;
+    Label1: TLabel;
+    Label7: TLabel;
+    Label9: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label16: TLabel;
+    edtDescricao_preJogo: TEdit;
+    edtOdd_preJogo: TEdit;
+    dtData_preJogo: TDateTimePicker;
+    pOddFinal: TPanel;
+    pRiscoFinal: TPanel;
+    rgUnidade: TRadioGroup;
+    pRetorno: TPanel;
+    lvPreJogo: TListView;
+    pBtnAdicionarJogo: TPanel;
+    pBtnLimparPreJogo: TPanel;
+    pBtnEditarJogo: TPanel;
+    pBtnExcluirJogo: TPanel;
+    cbModalidade_preJogo: TComboBox;
+    Label2: TLabel;
+    pCadastroJogo: TPanel;
+    pRisco_preJogo: TPanel;
+    Label3: TLabel;
+    pDescriçãoJogo: TPanel;
+    pQtdJogo: TPanel;
+    Label4: TLabel;
+    pValorTotalEntrada: TPanel;
+    Label5: TLabel;
+    Panel1: TPanel;
+    lvJogo: TListView;
+    Panel2: TPanel;
+    procedure FormCreate(Sender: TObject);
+    procedure edtOdd_preJogoChange(Sender: TObject);
+    procedure pBtnAdicionarJogoClick(Sender: TObject);
+    procedure pBtnLimparPreJogoClick(Sender: TObject);
+    procedure pBtnExcluirJogoClick(Sender: TObject);
+    procedure Panel1Click(Sender: TObject);
+    procedure Panel2Click(Sender: TObject);
+    procedure rgUnidadeClick(Sender: TObject);
+    procedure pOddFinalDblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure layoutAndComponentes;
+    procedure preJogo;
+    procedure carregarPreJogo;
+    procedure carregarInfJogo;
+    procedure cadastrarEntrada;
+
+  end;
+
+var
+  fmlCadastrosJogos: TfmlCadastrosJogos;
+  modalidade : array [1..5] of string = ('Futebol', 'NBA', 'NFL', 'E-Sport', 'Outros');
+
+  array_lista_id_jogo : array of integer;
+
+  qtd_jogo : integer;
+  descricao_jogo : String;
+  odd_jogo : double;
+  valor_entrada : double;
+  retorno_jogo : double;
+  risco_jogo : double;
+
+implementation
+
+{$R *.dfm}
+
+{ TfmlCadastrosJogos }
+
+procedure TfmlCadastrosJogos.cadastrarEntrada;
+var
+  query : TDataModule1;
+  i : integer;
+begin
+try
+  query := TDataModule1.Create(nil);
+
+  try
+
+    for I := 1 to lvJogo.Items.Count - 1 do
+      begin
+        array_lista_id_jogo[i] := strtoint(lvJogo.Items[i].Caption);
+      end;
+
+//
+//    with query.Query1 do
+//      begin
+//        sql.Clear;
+//        sql.Add('inset into ENTRADAS '
+//              + '(ID_JOGO_1, ID_JOGO_2, ID_JOGO_3, ID_JOGO_4, ID_JOGO_5, ODD_ENTRADA, DESCRICAO_ENTRADA, VALOR_ENTRADA, RISCO, DATA_ENTRADA) values '
+//              + '(:pId_jogo_1, :pId_jogo_2, :pId_jogo_3, :pId_jogo_4, :pId_jogo_5, :pOdd, :pDescricao, :pValor, :pRisco, :pData)');
+//        ParamByName(':pId_jogo_1').AsInteger :=
+//        ParamByName(':pId_jogo_2').AsInteger :=
+//        ParamByName(':pId_jogo_3').AsInteger :=
+//        ParamByName(':pId_jogo_4').AsInteger :=
+//        ParamByName(':pId_jogo_5').AsInteger :=
+//
+//
+//
+//      end;
+
+
+  except
+    ShowMessage('Erro ao cadastrar ENTRADA!');
+  end;
+
+finally
+  query.Destroy;
+end;
+end;
+
+procedure TfmlCadastrosJogos.carregarInfJogo;
+var
+  I: Integer;
+
+  descricao_jogo_lv : String;
+  odd_jogo_lv : double;
+  valor_entrada_lv : double;
+  retorno_jogo_lv : double;
+  risco_jogo_lv : double;
+begin
+try
+  descricao_jogo_lv := '';
+  odd_jogo_lv := 0;
+  valor_entrada_lv := 0;
+  retorno_jogo_lv := 0;
+  risco_jogo_lv := 0;
+
+
+  descricao_jogo := '';
+  odd_jogo := 1;
+
+  pDescriçãoJogo.Caption := '';
+
+  if lvJogo.Items.Count >= 0 then
+    begin
+      for I := 0 to lvJogo.Items.Count -1 do begin
+        descricao_jogo_lv := lvJogo.items[i].SubItems[0];
+        odd_jogo_lv := strtofloat(lvJogo.Items[i].SubItems[1]);
+        risco_jogo_lv := strtofloat(lvJogo.Items[i].SubItems[3]);
+
+
+        descricao_jogo := descricao_jogo + '(' + descricao_jogo_lv + ') ';
+        odd_jogo := odd_jogo * odd_jogo_lv;
+        qtd_jogo := qtd_jogo + 1;
+
+        descricao_jogo_lv := '';
+      end;
+
+      risco_jogo := 100 / odd_jogo;
+    end;
+
+
+    case rgUnidade.ItemIndex of
+      0 : valor_entrada := valor_unidade / 2;
+      1 : valor_entrada := valor_unidade;
+    end;
+
+
+    pDescriçãoJogo.Caption := descricao_jogo;
+    pOddFinal.Caption := formatfloat('0.00', odd_jogo);
+    pValorTotalEntrada.Caption := formatfloat('#,##0.00', valor_entrada);
+    pRetorno.Caption := formatfloat('#,##0.00', (valor_entrada * odd_jogo));
+    pRiscoFinal.Caption := formatfloat('0.00%', risco_jogo);
+    pQtdJogo.Caption := qtd_jogo.ToString;
+
+except
+
+end;
+end;
+
+procedure TfmlCadastrosJogos.carregarPreJogo;
+var
+  query : TDataModule1;
+
+  jogo_id : integer;
+  descricao : String;
+  odd_pre_jogo : double;
+  metodo : String;
+  risco_pre_jogo : double;
+  data_pre_jogo : TDate;
+
+  n : integer;
+begin
+try
+  query := TDataModule1.Create(nil);
+
+  lvPreJogo.Clear;
+  with query.Query1 do
+    begin
+      sql.Clear;
+      sql.Add('select ID_JOGO, DESCRICAO, ODD_PRE_JOGO, METODO, DATA_PRE_JOGO, RISCO_PRE_JOGO from JOGOS where TIPO_JOGO = ''PRE'' and JOGO_ATIVO = ''S''');
+      open;
+
+
+      while not eof do begin
+
+        jogo_id := FieldByName('ID_JOGO').AsInteger;
+        descricao := FieldByName('DESCRICAO').AsString;
+        odd_pre_jogo := FieldByName('ODD_PRE_JOGO').AsFloat;
+        metodo := FieldByName('METODO').AsString;
+        risco_pre_jogo := FieldByName('RISCO_PRE_JOGO').AsFloat;
+        data_pre_jogo := FieldByName('DATA_PRE_JOGO').AsDateTime;
+
+        risco_pre_jogo := strtofloat(formatfloat('0.00', risco_pre_jogo));
+
+        with lvPreJogo.Items.Add do
+          begin
+            Caption := jogo_id.ToString;
+            SubItems.Add(descricao);
+            SubItems.Add(formatfloat('0.00',  odd_pre_jogo));
+            SubItems.Add(metodo);
+            SubItems.Add(risco_pre_jogo.ToString);
+            SubItems.Add(formatdateTime('dd/mm/yyyy', data_pre_jogo));
+          end;
+
+        next;
+      end;
+
+    end;
+
+
+finally
+  query.Destroy;
+end;
+end;
+
+procedure TfmlCadastrosJogos.edtOdd_preJogoChange(Sender: TObject);
+var
+  risco_preJogo : double;
+begin
+
+  if edtOdd_preJogo.Text <> '' then
+    begin
+      risco_preJogo := 100 / strtofloat(edtOdd_preJogo.Text);
+
+      pRisco_preJogo.Caption := formatfloat('0.00%', risco_preJogo);
+    end
+    else
+    begin
+      pRisco_preJogo.Caption := '';
+    end;
+end;
+
+procedure TfmlCadastrosJogos.FormCreate(Sender: TObject);
+begin
+  layoutAndComponentes;
+
+  carregarPrejogo;
+
+  qtd_jogo := 0;
+  descricao_jogo := '';
+  odd_jogo := 0;
+  valor_entrada := 0;
+  retorno_jogo := 0;
+  risco_jogo := 0;
+end;
+
+procedure TfmlCadastrosJogos.layoutAndComponentes;
+var
+  i : integer;
+begin
+
+  for I := 1 to high(modalidade) do
+    begin
+     cbModalidade_preJogo.Text := modalidade[1];
+     cbModalidade_preJogo.Items.Add(modalidade[i]);
+
+    end;
+
+  dtData_preJogo.Date := now;
+end;
+
+procedure TfmlCadastrosJogos.Panel1Click(Sender: TObject);
+begin
+  qtD_jogo := 0;
+  if lvPreJogo.Selected <> nil then
+    begin
+      if (lvJogo.Items.Count - 1) <= 4 then
+        begin
+          with lvJogo.Items.Add do
+            begin
+              Caption := lvPreJogo.Selected.Caption;
+              SubItems.Add(lvPreJogo.Selected.SubItems[0]);
+              SubItems.Add(lvPreJogo.Selected.SubItems[1]);
+              SubItems.Add(lvPreJogo.Selected.SubItems[2]);
+              SubItems.Add(lvPreJogo.Selected.SubItems[3]);
+              SubItems.Add(lvPreJogo.Selected.SubItems[4]);
+            end;
+
+          lvPreJogo.DeleteSelected;
+
+          carregarInfJogo;
+        end
+        else
+        begin
+          ShowMessage('Já possui 5 Jogos adicionados');
+        end;
+
+    end;
+
+end;
+
+procedure TfmlCadastrosJogos.Panel2Click(Sender: TObject);
+var
+  i : integer;
+begin
+  qtD_jogo := 0;
+  if lvJogo.Selected <> nil then
+    begin
+      with lvPreJogo.Items.Add do
+      begin
+        Caption := lvJogo.Selected.Caption;
+        SubItems.Add(lvJogo.Selected.SubItems[0]);
+        SubItems.Add(lvJogo.Selected.SubItems[1]);
+        SubItems.Add(lvJogo.Selected.SubItems[2]);
+        SubItems.Add(lvJogo.Selected.SubItems[3]);
+        SubItems.Add(lvJogo.Selected.SubItems[4]);
+
+      end;
+      lvJogo.DeleteSelected;
+
+      carregarInfJogo;
+    end;
+
+
+end;
+
+procedure TfmlCadastrosJogos.pBtnAdicionarJogoClick(Sender: TObject);
+begin
+
+  if (edtDescricao_preJogo.Text <> '') and (edtOdd_preJogo.Text <> '') then
+    begin
+      if Application.MessageBox('Gravar Pré-Jogo', '', MB_YESNO) = mrYes then
+        begin
+          preJogo;
+          carregarPreJogo;
+        end;
+    end
+    else
+    begin
+      ShowMessage('Sem informações!');
+    end;
+end;
+
+procedure TfmlCadastrosJogos.pBtnExcluirJogoClick(Sender: TObject);
+var
+  id_prejogo : integer;
+  query : TDataModule1;
+begin
+
+
+
+
+  if lvPreJogo.Selected <> nil then
+    begin
+      id_prejogo := strtoint(lvPreJogo.items[lvPreJogo.Selected.Index].Caption);
+      if Application.MessageBox('Excluir Pré-Jogo selecionado', '', MB_YESNO) = mrYes then
+        begin
+          try
+            query := TDataModule1.Create(nil);
+
+            with query.Query1 do
+              begin
+                sql.Clear;
+                sql.Add('delete from JOGOS where ID_JOGO = :pId');
+                ParamByName('pId').AsInteger := id_prejogo;	
+                ExecSQL;
+              end;
+
+              carregarPreJogo;
+          finally
+            query.Destroy;
+          end;
+
+
+        end;
+    end
+    else
+    begin
+      ShowMessage('Nenhum Pré-Jogo foi selecionado!');
+    end;
+
+
+
+
+
+end;
+
+procedure TfmlCadastrosJogos.pBtnLimparPreJogoClick(Sender: TObject);
+begin
+  edtDescricao_preJogo.Clear;
+  edtOdd_preJogo.Clear;
+  dtData_preJogo.Date := now;
+  cbModalidade_preJogo.Text := modalidade[1];
+
+  edtDescricao_preJogo.SetFocus;
+
+end;
+
+procedure TfmlCadastrosJogos.pOddFinalDblClick(Sender: TObject);
+var
+  odd_jogo : double;
+begin
+  odd_jogo := strtofloat(inputBox('','',''));
+
+  if odd_jogo > 1 then
+    pOddFinal.Caption := formatfloat('#,##0.00', odd_jogo);
+
+end;
+
+procedure TfmlCadastrosJogos.preJogo;
+var
+  metodo_preJogo : String;
+  descricao_preJogo : String;
+  odd_preJogo : double;
+  data_preJogo : TDate;
+  modalidade_prejogo : String;
+  risco_preJogo : double;
+
+  query : TDataModule1;
+begin
+try
+  query := TDataModule1.Create(nil);
+
+  try
+
+    descricao_preJogo := edtDescricao_preJogo.Text;
+    odd_prejogo := strtofloat(edtOdd_preJogo.Text);
+    data_preJogo := dtData_preJogo.Date;
+    modalidade_preJogo := cbModalidade_preJogo.Text;
+
+    case rgMetodosEstrategias.ItemIndex of
+    0 : metodo_preJogo := 'Back zebra fora de casa';
+    1 : metodo_preJogo := 'Back zebra dentro de casa';
+    2 : metodo_preJogo := 'Back ao Favorito';
+    3 : metodo_preJogo := 'Over 2.5';
+    4 : metodo_preJogo := 'Under 1.5';
+    5 : metodo_preJogo := 'Over 0.5 HT 15 a 20 min';
+    6 : metodo_preJogo := 'ODD do Mercado';
+    7 : metodo_preJogo := 'Outros';
+    end;
+
+    risco_preJogo := 100 / odd_preJogo;
+
+
+    with query.Query1 do
+      begin
+        sql.Clear;
+        sql.Add('insert into JOGOS (TIPO_JOGO, DESCRICAO, ODD_PRE_JOGO, METODO, DATA_PRE_JOGO, RISCO_PRE_JOGO) VALUES (''PRE'', :pDescricao, :pOdd_pre_jogo, :pMetodo, :pData_pre_jogo, :pRisco_pre_jogo)');
+        ParamByName('pDescricao').AsString := descricao_preJogo;
+        ParamByName('pOdd_pre_jogo').AsFloat := odd_prejogo;
+        ParamByName('pMetodo').AsString := metodo_preJogo;
+        ParamByName('pData_pre_jogo').AsDate := data_preJogo;
+        ParamByName('pRisco_pre_jogo').AsFloat := risco_preJogo;
+        ExecSQL;
+      end;
+
+  except
+    ShowMessage('Erro ao cadastrar Pré-Jogo');
+  end;
+
+finally
+  query.Destroy;
+end;
+end;
+
+procedure TfmlCadastrosJogos.rgUnidadeClick(Sender: TObject);
+begin
+  carregarInfJogo;
+end;
+
+end.

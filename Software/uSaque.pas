@@ -36,9 +36,36 @@ begin
 end;
 
 procedure TfmlTelaPadrao2.pBtnOkClick(Sender: TObject);
+var
+  valor_saque : double;
+  data_saque : TDateTime;
+  observacao_saque : String;
+  descricao_saque : String;
 begin
   inherited;
-  saque(edtValor, dataTelaPadrao, edtObservacao);
+
+  valor_saque := strtofloat(edtValor.Text);
+  data_saque := dataTelaPadrao.Date;
+  observacao_saque := edtObservacao.Text;
+
+  descricao_saque := 'Confirmar Saque' + #13 + #13
+                         + 'Valor:      ' + formatfloat('#,##0.00', valor_saque) + #13
+                         + 'Data:       ' + formatdatetime('dd/mm/yyyy', data_saque) + #13
+                         + 'Obs:        ' + observacao_saque;
+
+  if Application.MessageBox(pchar(descricao_saque), 'Saque', MB_YESNO) = mryes then
+    begin
+      saque(edtValor, dataTelaPadrao, edtObservacao);
+
+      pBtnLimparClick(pBtnLimpar);
+    end
+    else
+    begin
+
+    end;
+
+
+
 
 end;
 
@@ -57,9 +84,10 @@ begin
     with query.Query1 do
       begin
         sql.Clear;
-        sql.Add('insert into SAQUE (VALOR_SAQUE, DATA_SAQUE, OBSERVACAO_SAQUE) value (:pValor, :pData, :pObservacao)');
+        sql.Add('insert into FINANCEIRO (VALOR, DATA_FINANCEIRO, TIPO_MOVIMENTO, OBSERVACAO_FINANCEIRO) value (:pValor, :pData, :pTipo_movimento, :pObservacao)');
         ParamByName('pValor').AsFloat	:= valor_saque;
         ParamByName('pData').AsDate := data_saque;
+        ParamByName('pTipo_movimento').AsString := 'SN';
         ParamByName('pObservacao').AsString := observacao_saque;
         ExecSQL;
 

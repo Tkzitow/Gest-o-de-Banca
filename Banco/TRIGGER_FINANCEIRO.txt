@@ -1,0 +1,164 @@
+DELIMITER //
+
+create trigger TRG_FINANCEIRO_INSERT
+after insert
+on FINANCEIRO
+for each row
+begin
+  declare x_tipo_movimento CHAR(2);
+  declare x_banca_valor FLOAT;
+  declare x_banca_valor_atual FLOAT;
+  declare x_menor_roi FLOAT;
+  declare x_maior_roi FLOAT;
+  declare x_roi FLOAT;
+
+  select
+    FINANCEIRO.TIPO_MOVIMENTO,
+    BANCA.BANCA_VALOR,
+    BANCA.BANCA_VALOR_ATUAL,
+    BANCA.ROI,
+    BANCA.MAIOR_ROI,
+    BANCA.MENOR_ROI
+  into
+    x_tipo_movimento,
+    x_banca_valor,
+    x_banca_valor_atual,
+    x_roi,
+    x_maior_roi,
+    x_menor_roi
+  from
+    FINANCEIRO, BANCA
+  where FINANCEIRO_ID = new.FINANCEIRO_ID;
+
+
+                                 
+  if x_tipo_movimento = 'SN' then
+
+    if ((x_banca_valor_atual - new.VALOR) - x_banca_valor) < x_menor_roi then
+      set x_menor_roi = (x_banca_valor_atual - new.VALOR) - x_banca_valor;
+    end if;
+    
+    update BANCA
+    set    BANCA_VALOR_ATUAL = BANCA_VALOR_ATUAL - new.VALOR,
+           ROI = x_roi - new.VALOR,
+           MENOR_ROI = x_menor_roi
+    where STATUS_BANCA = 'A';        
+    
+  elseif x_tipo_movimento = 'DP' then
+    update BANCA
+    set    BANCA_VALOR = BANCA_VALOR + new.VALOR,
+           BANCA_VALOR_ATUAL = BANCA_VALOR_ATUAL + new.VALOR
+    where  STATUS_BANCA = 'A';
+
+  elseif (x_tipo_movimento = 'AP') or (x_tipo_movimento = 'MP') then 
+
+    if ((x_banca_valor_atual + new.VALOR) - x_banca_valor) > x_maior_roi then
+      set x_maior_roi = (x_banca_valor_atual + new.VALOR) - x_banca_valor; 
+    end if;
+ 
+    update BANCA
+    set    BANCA_VALOR_ATUAL = BANCA_VALOR_ATUAL + new.VALOR,
+           ROI = x_roi + new.VALOR,
+           MAIOR_ROI = x_maior_roi
+    where STATUS_BANCA = 'A';
+
+  elseif (x_tipo_movimento = 'AN') or (x_tipo_movimento = 'MN') then  
+
+    if ((x_banca_valor_atual - new.VALOR) - x_banca_valor) < x_menor_roi then
+      set x_menor_roi = (x_banca_valor_atual - new.VALOR) - x_banca_valor;
+    end if;
+
+    update BANCA
+    set    BANCA_VALOR_ATUAL = BANCA_VALOR_ATUAL - new.VALOR,
+           ROI = x_roi - new.VALOR,
+           MENOR_ROI = x_menor_roi
+    where STATUS_BANCA = 'A';
+
+  end if;
+
+end //
+
+DELIMITER ;
+
+
+DELIMITER //
+
+create trigger TRG_FINANCEIRO_UPDATE
+after update
+on FINANCEIRO
+for each row
+begin
+  declare x_tipo_movimento CHAR(2);
+  declare x_banca_valor FLOAT;
+  declare x_banca_valor_atual FLOAT;
+  declare x_menor_roi FLOAT;
+  declare x_maior_roi FLOAT;
+  declare x_roi FLOAT;
+
+  select
+    FINANCEIRO.TIPO_MOVIMENTO,
+    BANCA.BANCA_VALOR,
+    BANCA.BANCA_VALOR_ATUAL,
+    BANCA.ROI,
+    BANCA.MAIOR_ROI,
+    BANCA.MENOR_ROI
+  into
+    x_tipo_movimento,
+    x_banca_valor,
+    x_banca_valor_atual,
+    x_roi,
+    x_maior_roi,
+    x_menor_roi
+  from
+    FINANCEIRO, BANCA
+  where FINANCEIRO_ID = new.FINANCEIRO_ID;
+
+
+                                 
+  if x_tipo_movimento = 'SN' then
+
+    if ((x_banca_valor_atual - new.VALOR) - x_banca_valor) < x_menor_roi then
+      set x_menor_roi = (x_banca_valor_atual - new.VALOR) - x_banca_valor;
+    end if;
+    
+    update BANCA
+    set    BANCA_VALOR_ATUAL = BANCA_VALOR_ATUAL - new.VALOR,
+           ROI = x_roi - new.VALOR,
+           MENOR_ROI = x_menor_roi
+    where STATUS_BANCA = 'A';        
+    
+  elseif x_tipo_movimento = 'DP' then
+    update BANCA
+    set    BANCA_VALOR = BANCA_VALOR + new.VALOR,
+           BANCA_VALOR_ATUAL = BANCA_VALOR_ATUAL + new.VALOR
+    where  STATUS_BANCA = 'A';
+
+  elseif (x_tipo_movimento = 'AP') or (x_tipo_movimento = 'MP') then 
+
+    if ((x_banca_valor_atual + new.VALOR) - x_banca_valor) > x_maior_roi then
+      set x_maior_roi = (x_banca_valor_atual + new.VALOR) - x_banca_valor; 
+    end if;
+ 
+    update BANCA
+    set    BANCA_VALOR_ATUAL = BANCA_VALOR_ATUAL + new.VALOR,
+           ROI = x_roi + new.VALOR,
+           MAIOR_ROI = x_maior_roi
+    where STATUS_BANCA = 'A';
+
+  elseif (x_tipo_movimento = 'AN') or (x_tipo_movimento = 'MN') then  
+
+    if ((x_banca_valor_atual - new.VALOR) - x_banca_valor) < x_menor_roi then
+      set x_menor_roi = (x_banca_valor_atual - new.VALOR) - x_banca_valor;
+    end if;
+
+    update BANCA
+    set    BANCA_VALOR_ATUAL = BANCA_VALOR_ATUAL - new.VALOR,
+           ROI = x_roi - new.VALOR,
+           MENOR_ROI = x_menor_roi
+    where STATUS_BANCA = 'A';
+
+  end if;
+
+end //
+
+DELIMITER ;

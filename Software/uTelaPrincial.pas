@@ -23,7 +23,6 @@ type
     pValorUnidade: TPanel;
     Panel13: TPanel;
     pQuantidadeUnidade: TPanel;
-    edtPorcentagemUnidade: TEdit;
     Label1: TLabel;
     pMainMid: TPanel;
     Panel16: TPanel;
@@ -69,18 +68,39 @@ type
     pBtnRelatorio: TPanel;
     Panel2: TPanel;
     pBtnConfiguracao: TPanel;
-    pBtnFinalizarMes: TPanel;
+    pBtnFinalizarBanca: TPanel;
     cbMesMeta: TComboBox;
     cbDiaMeta: TComboBox;
     Label20: TLabel;
     Label21: TLabel;
     Panel3: TPanel;
+    pPercentualUnidade: TPanel;
+    pValorMedioEntrada: TPanel;
+    Panel9: TPanel;
+    pQtdEntradas: TPanel;
+    Panel14: TPanel;
+    pValorTotalInvestido: TPanel;
+    Panel17: TPanel;
+    pMediaODD: TPanel;
+    Panel19: TPanel;
+    pQtdJogosAberto: TPanel;
+    Panel21: TPanel;
+    pMaiorODD: TPanel;
+    Panel24: TPanel;
+    pMenorODD: TPanel;
+    Panel26: TPanel;
+    pQtdSaque: TPanel;
+    Panel28: TPanel;
+    pQtdDeposito: TPanel;
+    Panel32: TPanel;
+    Panel33: TPanel;
+    pQtdPreJogos: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure pDepositoClick(Sender: TObject);
     procedure pSaqueClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Panel3Click(Sender: TObject);
-    procedure edtPorcentagemUnidadeChange(Sender: TObject);
+    procedure pBtnCadastrarJogoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -111,28 +131,28 @@ begin
     with query.Query1 do
       begin
         sql.Clear;
-        sql.Add('select BANCA, BANCA_ATUAL, ROI, PERCENTUAL_UNIDADE from FINANCEIRO');
+        sql.Add('select BANCA_VALOR, BANCA_VALOR_ATUAL, ROI, PERCENTUAL_UNIDADE from BANCA');
         open;
 
-        banca := FieldByName('BANCA').AsFloat;
-        banca_atual := FieldByName('BANCA_ATUAL').AsFloat;
+        banca := FieldByName('BANCA_VALOR').AsFloat;
+        banca_atual := FieldByName('BANCA_VALOR_ATUAL').AsFloat;
         roi := FieldByName('ROI').AsFloat;
         percentual_unidade := FieldByName('PERCENTUAL_UNIDADE').AsFloat;
+        valor_unidade := banca_atual * (percentual_unidade / 100);
+        qtd_unidade := banca_atual / percentual_unidade;
 
       end;
 
     pBancaInicial.Caption := formatfloat('#,##0.00', banca);
     pBancaAtual.Caption := formatfloat('#,##0.00', banca_atual);
     pRoi.Caption := formatfloat('#,##0.00', roi);
+    pPercentualUnidade.Caption := formatfloat('0.00%', percentual_unidade);
+    pValorUnidade.Caption := formatfloat('#,##0.00', valor_unidade);
+    pQuantidadeUnidade.Caption := qtd_unidade.tostring;
 
   except
     ShowMessage('Erro na atualização de dados financeiros!');
   end;
-end;
-
-procedure TfmlTelaPrincial.edtPorcentagemUnidadeChange(Sender: TObject);
-begin
-  tratarEdit(edtPorcentagemUnidade);
 end;
 
 procedure TfmlTelaPrincial.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -164,6 +184,19 @@ end;
 procedure TfmlTelaPrincial.Panel3Click(Sender: TObject);
 begin
   atualizarInfFinanceiras;
+end;
+
+procedure TfmlTelaPrincial.pBtnCadastrarJogoClick(Sender: TObject);
+var
+  open_tela : TfmlCadastrosJogos;
+begin
+  try
+    open_tela := TfmlCadastrosJogos.Create(nil);
+    open_tela.ShowModal;
+  finally
+
+  end;
+
 end;
 
 procedure TfmlTelaPrincial.pDepositoClick(Sender: TObject);

@@ -1,0 +1,27 @@
+create table BANCA (
+  BANCA_ID                   INT AUTO_INCREMENT PRIMARY KEY,
+  BANCA_VALOR                FLOAT NOT NULL DEFAULT 0,
+  BANCA_VALOR_ATUAL          FLOAT NOT NULL,
+  ROI                        FLOAT NULL,
+  MAIOR_ROI                  FLOAT NULL,
+  MENOR_ROI                  FLOAT NULL,
+  PERCENTUAL_UNIDADE         FLOAT NOT NULL,
+  DATA_INICIO_BANCA          DATE NOT NULL,
+  DATA_FINAL_BANCA           DATE NULL,
+  STATUS_BANCA               CHAR(1) NOT NULL DEFAULT 'A'
+);
+
+
+/* Checagem.....*/
+/* A - Ativo....*/
+/* I - Inativo..*/
+alter table BANCA
+add constraint CK_ATIVO_BANCA
+check (STATUS_BANCA in ('A', 'I'));
+
+
+/* Checagem....*/
+alter table BANCA
+add constraint CK_DATA_BANCA
+check (DATA_FINAL_BANCA >= DATA_INICIO_BANCA);
+

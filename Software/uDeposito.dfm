@@ -1,14 +1,13 @@
 inherited fmlTelaPadrao1: TfmlTelaPadrao1
   Caption = ''
-  ClientWidth = 436
   ExplicitWidth = 448
+  ExplicitHeight = 443
   TextHeight = 15
   inherited pCentral: TPanel
-    Width = 436
     ExplicitWidth = 432
     inherited pbarraButton: TPanel
+      Top = 335
       Width = 434
-      ExplicitWidth = 430
       inherited pBtnOk: TPanel
         OnClick = pBtnOkClick
       end

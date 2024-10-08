@@ -1,0 +1,75 @@
+unit uSaque;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaPadrao, Vcl.ExtCtrls, Vcl.StdCtrls,
+  Vcl.WinXPickers, uDataModule, uDadosGlobais;
+
+type
+  TfmlTelaPadrao2 = class(TfmlTelaPadrao)
+    procedure FormCreate(Sender: TObject);
+    procedure pBtnOkClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function saque(edt_valor: TEdit; dp_data: TDatePicker; edt_observacao: TEdit): boolean;
+  end;
+
+
+var
+  fmlTelaPadrao2: TfmlTelaPadrao2;
+
+  query : TDataModule1;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TfmlTelaPadrao2.FormCreate(Sender: TObject);
+begin
+  inherited;
+  Query := TDataModule1.Create(nil);
+end;
+
+procedure TfmlTelaPadrao2.pBtnOkClick(Sender: TObject);
+begin
+  inherited;
+  saque(edtValor, dataTelaPadrao, edtObservacao);
+
+end;
+
+function TfmlTelaPadrao2.saque(edt_valor: TEdit; dp_data: TDatePicker;
+  edt_observacao: TEdit): boolean;
+var
+  valor_saque : double;
+  data_saque : TDate;
+  observacao_saque : String;
+begin
+  valor_saque := strtofloat(edt_valor.Text);
+  data_saque := dp_data.Date;
+  observacao_saque := edt_observacao.Text;
+
+  try
+    with query.Query1 do
+      begin
+        sql.Clear;
+        sql.Add('insert into FINANCEIRO (VALOR, DATA_FINANCEIRO, TIPO_MOVIMENTO, OBSERVACAO_FINANCEIRO) value (:pValor, :pData, :pTipo_movimento, :pObservacao)');
+        ParamByName('pValor').AsFloat	:= valor_saque;
+        ParamByName('pData').AsDate := data_saque;
+        ParamByName('pTipo_movimento').AsString := 'SN';
+        ParamByName('pObservacao').AsString := observacao_saque;
+        ExecSQL;
+
+      end;
+
+  except
+    ShowMessage('Erro no SAQUE!!');
+  end;
+
+end;
+
+end.

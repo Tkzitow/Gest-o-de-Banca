@@ -1,14 +1,23 @@
 create table FINANCEIRO (
-  BANCA                      FLOAT NOT NULL DEFAULT 0,
-  BANCA_ATUAL                FLOAT NOT NULL,
-  ROI                        FLOAT NULL,
-  MAIOR_ROI                  FLOAT NULL,
-  PERCENTUAL_UNIDADE         FLOAT NOT NULL,
-  VALOR_ULTIMO_DEPOSITO_1    FLOAT NULL,
-  VALOR_ULTIMO_DEPOSITO_2    FLOAT NULL,
-  VALOR_ULTIMO_SAQUE_1       FLOAT NULL,
-  VALOR_ULTIMO_SAQUE_2       FLOAT NULL,
-  VALOR_MAIOR_SAQUE          FLOAT NULL,
-  VALOR_MENOR_SAQUE          FLOAT NULL
+  FINANCEIRO_ID           INT AUTO_INCREMENT PRIMARY KEY,
+  VALOR                   FLOAT NOT NULL,
+  DATA_FINANCEIRO         DATE NOT NULL, 
+  TIPO_MOVIMENTO          CHAR(2) NOT NULL,
+  OBSERVACAO_FINANCEIRO   VARCHAR(50) NULL
 );
 
+/* Checagem......*/
+/* SN - Saque.............*/
+/* DP - Deposito..*/
+/* AP - Apostas Positiva...*/
+/* AN - Apostas Negativa...*/
+/* MP - Manual Positiva....*/
+/* MN - Manual Negativa....*/
+alter table FINANCEIRO
+add constraint CK_TIPO_MOVIMENTO_FIN
+check (TIPO_MOVIMENTO in ('SN', 'DP', 'AP', 'AN', 'MP', 'MN'));
+
+/* Checagem..................*/
+alter table FINANCEIRO
+add constraint CK_VALOR_FIN
+check (VALOR > 0);

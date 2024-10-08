@@ -30,8 +30,7 @@
       Height = 152
       Align = alTop
       TabOrder = 0
-      ExplicitLeft = 2
-      ExplicitTop = -5
+      ExplicitWidth = 1219
       object Label1: TLabel
         Left = 208
         Top = 76
@@ -70,7 +69,6 @@
         Top = 14
         Width = 185
         Height = 41
-        Caption = 'pBanca'
         TabOrder = 3
       end
       object Panel11: TPanel
@@ -86,7 +84,6 @@
         Top = 14
         Width = 185
         Height = 41
-        Caption = 'Panel6'
         TabOrder = 5
       end
       object Panel10: TPanel
@@ -102,7 +99,6 @@
         Top = 97
         Width = 185
         Height = 41
-        Caption = 'Panel6'
         TabOrder = 7
       end
       object Panel13: TPanel
@@ -118,24 +114,14 @@
         Top = 97
         Width = 185
         Height = 41
-        Caption = 'Panel6'
         TabOrder = 9
-      end
-      object edtPorcentagemUnidade: TEdit
-        Left = 304
-        Top = 73
-        Width = 101
-        Height = 23
-        TabOrder = 10
-        OnChange = edtPorcentagemUnidadeChange
       end
       object pBancaAtual: TPanel
         Left = 648
         Top = 15
         Width = 185
         Height = 41
-        Caption = 'Panel6'
-        TabOrder = 11
+        TabOrder = 10
       end
       object Panel8: TPanel
         Left = 520
@@ -143,7 +129,7 @@
         Width = 129
         Height = 41
         Caption = 'Banca Atual'
-        TabOrder = 12
+        TabOrder = 11
       end
       object Panel3: TPanel
         Left = 8
@@ -153,17 +139,25 @@
         Caption = 'F5'
         Color = clRed
         ParentBackground = False
-        TabOrder = 13
+        TabOrder = 12
         OnClick = Panel3Click
+      end
+      object pPercentualUnidade: TPanel
+        Left = 299
+        Top = 68
+        Width = 54
+        Height = 23
+        TabOrder = 13
       end
     end
     object pMainMid: TPanel
       Left = 1
-      Top = 153
+      Top = 456
       Width = 1223
       Height = 272
-      Align = alTop
+      Align = alBottom
       TabOrder = 1
+      ExplicitTop = 153
       ExplicitWidth = 1219
       object Label2: TLabel
         Left = 136
@@ -494,6 +488,7 @@
         Color = 8454143
         ParentBackground = False
         TabOrder = 0
+        OnClick = pBtnCadastrarJogoClick
       end
       object pBtnListJogos: TPanel
         Left = 186
@@ -522,26 +517,175 @@
         Caption = 'Configurac'#227'o'
         TabOrder = 3
       end
-      object pBtnFinalizarMes: TPanel
+      object pBtnFinalizarBanca: TPanel
         Left = 1037
         Top = 1
         Width = 185
         Height = 80
         Align = alRight
-        Caption = 'Finalizar M'#234's'
+        Caption = 'Finalizar Banca'
         TabOrder = 4
         ExplicitLeft = 1033
       end
     end
     object Panel2: TPanel
       Left = 1
-      Top = 456
+      Top = 153
       Width = 1223
-      Height = 272
-      Align = alBottom
+      Height = 311
+      Align = alTop
       TabOrder = 3
-      ExplicitTop = 455
-      ExplicitWidth = 1219
+      ExplicitLeft = 2
+      object pValorMedioEntrada: TPanel
+        Left = 136
+        Top = 24
+        Width = 185
+        Height = 41
+        TabOrder = 0
+      end
+      object Panel9: TPanel
+        Left = 16
+        Top = 24
+        Width = 128
+        Height = 41
+        Caption = 'Valor M'#233'dio Entrada'
+        TabOrder = 1
+      end
+      object pQtdEntradas: TPanel
+        Left = 136
+        Top = 71
+        Width = 185
+        Height = 41
+        TabOrder = 2
+      end
+      object Panel14: TPanel
+        Left = 16
+        Top = 71
+        Width = 128
+        Height = 41
+        Caption = 'Qtd. Entradas'
+        TabOrder = 3
+      end
+      object pValorTotalInvestido: TPanel
+        Left = 136
+        Top = 256
+        Width = 185
+        Height = 41
+        TabOrder = 4
+      end
+      object Panel17: TPanel
+        Left = 16
+        Top = 256
+        Width = 128
+        Height = 41
+        Caption = 'Valor Total investido'
+        TabOrder = 5
+      end
+      object pMediaODD: TPanel
+        Left = 1008
+        Top = 231
+        Width = 185
+        Height = 41
+        TabOrder = 6
+      end
+      object Panel19: TPanel
+        Left = 888
+        Top = 231
+        Width = 128
+        Height = 41
+        Caption = 'ODD M'#233'dia'
+        TabOrder = 7
+      end
+      object pQtdJogosAberto: TPanel
+        Left = 488
+        Top = 24
+        Width = 185
+        Height = 41
+        TabOrder = 8
+      end
+      object Panel21: TPanel
+        Left = 368
+        Top = 24
+        Width = 128
+        Height = 41
+        Caption = 'Qtd. Jogos Abertos'
+        TabOrder = 9
+      end
+      object pMaiorODD: TPanel
+        Left = 1008
+        Top = 137
+        Width = 185
+        Height = 41
+        TabOrder = 10
+      end
+      object Panel24: TPanel
+        Left = 888
+        Top = 137
+        Width = 128
+        Height = 41
+        Caption = 'Maior ODD'
+        TabOrder = 11
+      end
+      object pMenorODD: TPanel
+        Left = 1008
+        Top = 184
+        Width = 185
+        Height = 41
+        TabOrder = 12
+      end
+      object Panel26: TPanel
+        Left = 888
+        Top = 184
+        Width = 128
+        Height = 41
+        Caption = 'Menor ODD'
+        TabOrder = 13
+      end
+      object pQtdSaque: TPanel
+        Left = 1008
+        Top = 24
+        Width = 185
+        Height = 41
+        TabOrder = 14
+      end
+      object Panel28: TPanel
+        Left = 888
+        Top = 24
+        Width = 128
+        Height = 41
+        Caption = 'Qtd. Saques'
+        TabOrder = 15
+      end
+      object pQtdDeposito: TPanel
+        Left = 1008
+        Top = 71
+        Width = 185
+        Height = 41
+        TabOrder = 16
+      end
+      object Panel32: TPanel
+        Left = 888
+        Top = 71
+        Width = 128
+        Height = 41
+        Caption = 'Qtd. Depositos'
+        TabOrder = 17
+      end
+      object Panel33: TPanel
+        Left = 368
+        Top = 96
+        Width = 128
+        Height = 41
+        Caption = 'Qtd. Pr'#233' Jogos'
+        TabOrder = 18
+      end
+      object pQtdPreJogos: TPanel
+        Left = 488
+        Top = 96
+        Width = 185
+        Height = 41
+        TabOrder = 19
+      end
     end
   end
 end

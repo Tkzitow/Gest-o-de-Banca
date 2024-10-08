@@ -104,7 +104,6 @@
             <Form>fmlTelaPrincial</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\..\..\..\Documents\Embarcadero\Studio\Projects\DadosGlobais.pas"/>
         <DCCReference Include="uCadastrosJogos.pas">
             <Form>fmlCadastrosJogos</Form>
             <FormType>dfm</FormType>
